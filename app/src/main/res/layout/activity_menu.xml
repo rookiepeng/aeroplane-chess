@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rookiedev.aeroplanechess.app.MenuActivity">
+    <!-- The main content view -->
+
+    <view
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.rookiedev.aeroplanechess.app.view.HomeView"
+        android:id="@+id/homeview"
+        android:background="#ffededed"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <com.google.android.gms.ads.AdView android:id="@+id/adView"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adUnitId="ca-app-pub-9759692679007522/4452452906"
+        ads:adSize="SMART_BANNER"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/helpButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_action_help"
+        android:contentDescription="@string/help"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/proButton"
+        android:background="@drawable/ic_action_pro"
+        android:clickable="false"
+        android:contentDescription="@string/remove_ad"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/helpButton"
+        android:layout_marginRight="6dp"/>
+
+</RelativeLayout>

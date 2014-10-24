@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">飞行棋</string>
+
+    <string name="Upgrade_title">升级？</string>
+    <string name="Upgrade_context">升级到专业版，移除广告？</string>
+    <string name="Upgrade">升级</string>
+    <string name="Cancel">取消</string>
+    <string name="OK">确认</string>
+
+    <string name="home_title">飞行棋</string>
+
+    <string name="leaderboard">排行榜</string>
+
+    <string name="resume_game">恢复游戏</string>
+    <string name="new_game">新游戏</string>
+    <string name="two_players">双人游戏</string>
+    <string name="four_players">四人游戏</string>
+    <string name="red_vs_blue">红 vs 蓝</string>
+    <string name="yellow_vs_green">黄 vs 绿</string>
+
+    <string name="remove_ad">移除广告</string>
+    <string name="help">帮助</string>
+
+    <string name="four_star">★ ★ ★ ★</string>
+    <string name="three_star">★ ★ ★</string>
+    <string name="two_star">★ ★</string>
+    <string name="one_star">★</string>
+
+    <string name="rules_title">游戏规则：</string>
+    <string name="rule1">★ 1. 当骰子得到偶数时，飞机可以从机库起飞；</string>
+    <string name="rule2">★ 2. 飞机根据骰子上的数字，在棋盘上顺时针移动；</string>
+    <string name="rule3">★ 3. 当骰子上数字为6时，玩家获得第二次掷骰子的机会，如果玩家连续三次掷得6，则前面两次移动的飞机回到机库，且玩家失去继续掷骰子的机会；</string>
+    <string name="rule4">★ 4. 当飞机飞到对手的飞机上时，对手的飞机被打回机库；</string>
+    <string name="rule5">★ 5. 当飞机飞到自己颜色的格子上时，飞机向前飞四格；</string>
+    <string name="rule6">★ 6. 当飞机飞到自己颜色的捷径上时，飞机可以飞捷径，捷径上的其他颜色的飞机都别打回机库；</string>
+    <string name="rule7">★ 7. 如果飞机不能刚好到达终点，则需要往后飞；</string>
+    <string name="rule8">★ 8. 最早将左右飞机飞到终点的玩家获胜。</string>
+
+    <string name="error_title">错误</string>
+    <string name="play_service_error">您的 Google Play 服务框架存在问题，无法购买高级版！</string>
+
+    <string name="pro_title">高级版</string>
+    <string name="pro_version">感谢您购买高级版！</string>
+
+</resources>

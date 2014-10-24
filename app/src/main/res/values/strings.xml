@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Aeroplane Chess</string>
+
+    <string name="Upgrade_title">Upgrade?</string>
+    <string name="Upgrade_context">Upgrade to pro version to remove Ads?</string>
+    <string name="Upgrade">Upgrade</string>
+    <string name="Cancel">Cancel</string>
+    <string name="OK">OK</string>
+
+    <string name="home_title">Aeroplane</string>
+
+    <string name="leaderboard">Leaderboard</string>
+
+    <string name="resume_game">Resume Game</string>
+    <string name="new_game">Start New Game</string>
+    <string name="two_players">Two Players</string>
+    <string name="four_players">Four Players</string>
+    <string name="red_vs_blue">Red vs Blue</string>
+    <string name="yellow_vs_green">Yellow vs Green</string>
+
+    <string name="remove_ad">remove ads</string>
+    <string name="help">help</string>
+
+    <string name="four_star">★ ★ ★ ★</string>
+    <string name="three_star">★ ★ ★</string>
+    <string name="two_star">★ ★</string>
+    <string name="one_star">★</string>
+
+    <string name="rules_title">Rules:</string>
+    <string name="rule1">★ 1. Take a plane out of the hangar onto the board. This can only be done by rolling an even number.</string>
+    <string name="rule2">★ 2. Move a piece that\'s on the board clockwise around the track, the number of spaces indicated by the dice.</string>
+    <string name="rule3">★ 3. A roll of 6, whether it is used to enter or move a piece, gives that player another roll. A second 6 gives the player a third roll. If the player rolls a third 6, any pieces moved by the first two 6\'s must return to their hangar and play passes to the next player.</string>
+    <string name="rule4">★ 4. When a player lands on an opponent\'s piece, the opponent returns that piece to its hangar.</string>
+    <string name="rule5">★ 5. When a plane lands on a space of its own color, it immediately jumps to the next space of its own color. Any opposing planes sitting on these squares are sent back to their hangars.</string>
+    <string name="rule6">★ 6. There are additional \"shortcut\" squares. When a plane lands on one of these of its own color, it may take the shortcut, and any opposing planes in the path of the shortcut are sent back to their hangars.This may also by done in succession with the previous rule, with a jump leading to shortcut. Some also play that a direct land on a shortcut may be followed by a jump.</string>
+    <string name="rule7">★ 7. If a player cannot move pieces into the center base by an exact roll of the die, then they must move their piece backwards according to number rolled.</string>
+    <string name="rule8">★ 8. Plane must fly into the center base on an exact roll. When a plane does so, it is placed facedown back in its own hangar, indicating that it is done for the game. The first player to get all of four of their planes to the center of the board wins. The rest play until there is only one loser.</string>
+
+    <string name="error_title">Error</string>
+    <string name="play_service_error">There is a problem with the google play service, you can\'t purchase pro version.</string>
+
+    <string name="pro_title">pro version</string>
+    <string name="pro_version">Thank you for upgrading to pro version! Enjoy the game without ADs!</string>
+
+</resources>
