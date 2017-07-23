@@ -351,9 +351,8 @@ public class HomeView extends ViewGroup {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         DisplayMetrics dm = mContext.getResources().getDisplayMetrics();
-        width = getWidth();
-        density = dm.density;      // 屏幕密度（像素比例：0.75/1.0/1.5/2.0）
-        //int densityDPI = dm.densityDpi;     // 屏幕密度（每寸像素：120/160/240/320）
+        width = getMeasuredWidth();
+        density = dm.density;
         paddingY = width / 10;
         paddingX = width / 10;
         //itemHeight = (height - paddingY * 5) / 4;
