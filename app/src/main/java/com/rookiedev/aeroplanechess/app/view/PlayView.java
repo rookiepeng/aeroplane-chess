@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -2832,7 +2832,7 @@ public class PlayView extends ViewGroup {
 
     public void savePref() {
         SharedPreferences prefs = mContext.getSharedPreferences(Constants.SHARED_PREFS_NAME,
-                ActionBarActivity.MODE_PRIVATE);
+                AppCompatActivity.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
         if (rankView.getVisibility() == INVISIBLE) {
@@ -2892,7 +2892,7 @@ public class PlayView extends ViewGroup {
 
     private void readPref() {
         SharedPreferences prefs = mContext.getSharedPreferences(Constants.SHARED_PREFS_NAME,
-                ActionBarActivity.MODE_PRIVATE);// get the parameters from the Shared
+                AppCompatActivity.MODE_PRIVATE);// get the parameters from the Shared
         // read values from the shared preferences
         //player = Integer.parseInt(prefs.getString(MenuActivity.PLAYTYPE_PREF, String.valueOf(PlayView.FOURPLAYER)));
         //turn = Integer.parseInt(prefs.getString(MenuActivity.TURN_PREF, String.valueOf(PlayView.RED)));
@@ -2918,7 +2918,7 @@ public class PlayView extends ViewGroup {
 
     private void setPlaneDiceFromCache() {
         SharedPreferences prefs = mContext.getSharedPreferences(Constants.SHARED_PREFS_NAME,
-                ActionBarActivity.MODE_PRIVATE);// get the parameters from the Shared
+                AppCompatActivity.MODE_PRIVATE);// get the parameters from the Shared
         for (int i = 0; i <= 15; i++) {
             int stepTemp = Integer.parseInt(prefs.getString("PLANE" + String.valueOf(i) + "S", "-1"));
             plane[i].setStep(stepTemp);
@@ -2946,7 +2946,7 @@ public class PlayView extends ViewGroup {
     public void setResume() {
         //isResume = true;
         SharedPreferences prefs = mContext.getSharedPreferences(Constants.SHARED_PREFS_NAME,
-                ActionBarActivity.MODE_PRIVATE);// get the parameters from the Shared
+                AppCompatActivity.MODE_PRIVATE);// get the parameters from the Shared
 
     }
 
@@ -2990,7 +2990,7 @@ public class PlayView extends ViewGroup {
 
     private void checkPremium() {
         SharedPreferences prefs = mContext.getSharedPreferences(Constants.SHARED_PREFS_NAME,
-                ActionBarActivity.MODE_PRIVATE);// get the parameters from the Shared
+                AppCompatActivity.MODE_PRIVATE);// get the parameters from the Shared
         isPremium = prefs.getString(Constants.PREMIUM, "false").equals("true");
     }
 

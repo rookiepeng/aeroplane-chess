@@ -3,7 +3,7 @@ package com.rookiedev.aeroplanechess.app;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.ads.AdListener;
@@ -12,7 +12,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.rookiedev.aeroplanechess.app.constants.Constants;
 import com.rookiedev.aeroplanechess.app.view.PlayView;
 
-public class PlayActivity extends ActionBarActivity {
+public class PlayActivity extends AppCompatActivity {
     private PlayView playView;
     private int player;
     private InterstitialAd interstitial;

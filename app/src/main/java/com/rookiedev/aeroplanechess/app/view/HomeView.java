@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -200,10 +201,6 @@ public class HomeView extends ViewGroup {
                 inAlphaAnimator1.start();
                 inTransAnimator2.start();
                 inAlphaAnimator2.start();
-                //Intent intent = new Intent();
-                //intent.setClass(mContext, PlayActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //mContext.startActivity(intent);
             }
         });
 
@@ -302,16 +299,8 @@ public class HomeView extends ViewGroup {
                 MenuActivity.isPlayed = true;
                 Intent intent = new Intent();
                 intent.setClass(mContext, PlayActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra(Constants.ISCACHED_PREF, "false");
                 intent.putExtra(Constants.PLAYTYPE_PREF, String.valueOf(Constants.FOURPLAYER));
-                //intent.putExtra(FlydroidMouse.ID_MESSAGE, deviceId);
-                //intent.putExtra(FlydroidMouse.NAME_MESSAGE, deviceName);
-                //intent.putExtra(FlydroidMouse.IP_MESSAGE, deviceIp);
-                //intent.putExtra(FlydroidMouse.PORT_MESSAGE, devicePort);
-                //intent.putExtra(FlydroidMouse.COLOR_MESSAGE, colorID);
-                // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //mContext.startActivity(intent);
                 mContext.startActivity(intent);
             }
         });
@@ -356,7 +345,6 @@ public class HomeView extends ViewGroup {
         int baseline = (paddingY * 2 + itemHeight - 0 - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
         canvas.drawText(mContext.getString(R.string.home_title), width / 2, baseline, titlePaint);
         //canvas.drawRect(0,0,100,100,titlePaint);
-        //Log.v("TAG", "onDraw");
     }
 
     @Override

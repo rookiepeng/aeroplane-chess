@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -19,7 +19,7 @@ import com.rookiedev.aeroplanechess.app.util.Inventory;
 import com.rookiedev.aeroplanechess.app.util.Purchase;
 import com.rookiedev.aeroplanechess.app.view.HomeView;
 
-public class MenuActivity extends ActionBarActivity {
+public class MenuActivity extends AppCompatActivity {
     // in app billing
     private final static String SKU_PREMIUM = "premium";
     // (arbitrary) request code for the purchase flow
@@ -339,7 +339,7 @@ public class MenuActivity extends ActionBarActivity {
 
     private void readPref() {
         SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME,
-                ActionBarActivity.MODE_PRIVATE);// get the parameters from the Shared
+                AppCompatActivity.MODE_PRIVATE);// get the parameters from the Shared
         isFirstRun = prefs.getString(Constants.ISFIRSTRUN_PREF, "true").equals("true");
         isCached = prefs.getString(Constants.ISCACHED_PREF, "false").equals("true");
         mIsPremium = prefs.getString(Constants.PREMIUM, "false").equals("true");
@@ -347,7 +347,7 @@ public class MenuActivity extends ActionBarActivity {
 
     private void savePref() {
         SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME,
-                ActionBarActivity.MODE_PRIVATE);
+                AppCompatActivity.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         if (mIsPremium) {
             editor.putString(Constants.PREMIUM, "true");
