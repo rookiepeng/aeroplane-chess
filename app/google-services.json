@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "883596558181",
+    "firebase_url": "https://zpeng-games.firebaseio.com",
+    "project_id": "zpeng-games",
+    "storage_bucket": "zpeng-games.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883596558181:android:6b36357f84a72fe5",
+        "android_client_info": {
+          "package_name": "com.rookiedev.aeroplanechess.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883596558181-b4b7pnsgdlvgb0t24kfjlf7o45h8ijfv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZVnvspM2jpbYQybsNTEZCvoh5fHoEBR0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
