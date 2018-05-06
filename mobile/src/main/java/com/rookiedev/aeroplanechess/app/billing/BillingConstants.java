@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.rookiedev.microwavetools.billing;
+package com.rookiedev.aeroplanechess.app.billing;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClient.SkuType;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public final class BillingConstants {
     // SKUs for our products: the premium upgrade (non-consumable) and gas (consumable)
     public static final String SKU_PREMIUM = "premium";
     public static final String SKU_GAS = "gas";
-    public static final String SKU_ADFREE = "com.rookiedev.rfline.adfree.v1";
+    public static final String SKU_ADFREE = "com.rookiedev.aeroplane.chess.adfree.v1";
 
     // SKU for our subscription (infinite gas)
     public static final String SKU_GOLD_MONTHLY = "gold_monthly";

@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.rookiedev.microwavetools.billing;
+package com.rookiedev.aeroplanechess.app.billing;
 
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClient.BillingResponse;
 import com.android.billingclient.api.BillingClient.FeatureType;
@@ -78,7 +79,7 @@ public class BillingManager implements PurchasesUpdatedListener {
      * want to make it easy for an attacker to replace the public key with one
      * of their own and then fake messages from the server.
      */
-    private static final String BASE_64_ENCODED_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAs5JW1lae1XD7lDALy5eBi3G7X06jPSNVaOrdDp1ACV3vmt0LPF4nnSGDjkMxwhyCge+u8r4trnwJoOANgqxyDxq9icRXHGoZaZnjgHtUwGfZQYlwFIczpRbNkOSFe4/hiyWRDh9f4s/oSyoHO/yWtSrLHplabMQtg+CxU4IAC6Xym3gn8laPDUV6M/Fjsrv3t9ntKJIBGhX0S7ogrWTuLJU9hGTLIcPIR2WFtALYyX/AqlGKFk3KzYZ2hvoSfKnOPnFdswJYacr8aY7Y+vWG4Qz9LgPEM3iA15Lm7PxBd9r/VtcMn75cnuhMbAHKR8YEEjHk2gla4PaofedgwUstawIDAQAB";
+    private static final String BASE_64_ENCODED_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxn6o3fwh9JaOp67/aINiO12/Nl6H5gnVtdjfd1w+960IX3nGgqyK1Gr5ks96u93VZFRYGoczJXLbmKnMAdPXbAb97pelwDzH3t/Y6grA2slomAeZXgPgsndOnNrWfJbOtbMuOGiXzMiEAeFqjP4Yqlh6qyF0WW6j2FvMg+1r3VkNBq6BEor26X9248yPDqA8Ov67HB26G91tQh4WMJ+7HeWJuMgYyPa8aMqAYAveNnYUU3a3QXR3M1WcsxymQHZMtLl72mjh4mzZylKTMFUgtZwpozVy6gwkqgX63JPgvbQyfy4vbJEjAUyyQQ5luH6IGrM+tFyKSl1Fo9GNdi9+MwIDAQAB";
 
     /**
      * Listener to the updates that happen when purchases list was updated or consumption of the
