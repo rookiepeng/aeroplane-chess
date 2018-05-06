@@ -11,9 +11,6 @@ import android.view.View;
 import com.rookiedev.aeroplanechess.app.R;
 import com.rookiedev.aeroplanechess.app.constants.Constants;
 
-/**
- * TODO: document your custom view class.
- */
 public class BoardView extends View {
     private Context mContext;
     private Paint mPaintRed, mPaintGreen, mPaintYellow, mPaintBlue, mPaintPos;
