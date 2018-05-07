@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -36,7 +37,7 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
     // if there was a game cached already
     private boolean isCached = false;
     // views
-    private HomeView homeView;
+    //private HomeView homeView;
     private ImageButton proButton;
     private AdView adView;
     private Context mContext = this;
@@ -48,16 +49,22 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //setContentView(R.layout.content_menu);
         readPref();
 
+        /*
         adView =  this.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR) // All emulators
                 .build();
         if (!mIsPremium) {
             adView.loadAd(adRequest);
-        }
+        }*/
 
+        /*
         proButton =  findViewById(R.id.proButton);
         if (mIsPremium) {
             proButton.setVisibility(View.INVISIBLE);
@@ -78,12 +85,12 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
             public void onClick(View view) {
                 onBuyClicked();
             }
-        });
+        });*/
 
         // Create and initialize BillingManager which talks to BillingLibrary
         mBillingManager = new BillingManager(this, mUpdateListener);
 
-        homeView = findViewById(R.id.homeview);
+        //homeView = findViewById(R.id.homeview);
 
         if (isFirstRun) {
             alertDialog();
@@ -96,6 +103,7 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
 
     @Override
     public void onBackPressed() {
+        /*
         if (!homeView.isAniOnGoing()) {
             if (homeView.getPage() == 2) {
                 homeView.backToPage(1);
@@ -104,17 +112,17 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
             } else {
                 super.onBackPressed();
             }
-        }
+        }*/
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         if (isPlayed) {
-            homeView.resetView();
+            //homeView.resetView();
         }
         readPref();
-        homeView.setResume(isCached);
+        //homeView.setResume(isCached);
         // Note: We query purchases in onResume() to handle purchases completed while
         // the activity
         // is inactive. For example, this can happen if the activity is destroyed during
