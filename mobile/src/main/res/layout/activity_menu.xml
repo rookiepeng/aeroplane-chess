@@ -1,51 +1,56 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.rookiedev.aeroplanechess.app.MenuActivity">
-    <!-- The main content view -->
 
     <view
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        class="com.rookiedev.aeroplanechess.app.view.HomeView"
         android:id="@+id/homeview"
+        class="com.rookiedev.aeroplanechess.app.view.HomeView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:background="#ffededed"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/adView"/>
 
-    <com.google.android.gms.ads.AdView android:id="@+id/adView"
-        android:layout_gravity="center_horizontal"
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        ads:adUnitId="ca-app-pub-6523245757541965/5432891013"
         ads:adSize="BANNER"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        ads:adUnitId="ca-app-pub-6523245757541965/5432891013"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeview"/>
 
     <ImageButton
+        android:id="@+id/helpButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:id="@+id/helpButton"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/ic_action_help"
         android:contentDescription="@string/help"
-        android:layout_alignParentEnd="true" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
+        android:id="@+id/proButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:id="@+id/proButton"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/ic_action_pro"
         android:clickable="false"
         android:contentDescription="@string/remove_ad"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/helpButton"
-        android:layout_marginRight="6dp"/>
+        app:layout_constraintEnd_toStartOf="@+id/helpButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
