@@ -14,6 +14,7 @@ import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.Purchase;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.rookiedev.aeroplanechess.app.billing.BillingConstants;
 import com.rookiedev.aeroplanechess.app.billing.BillingManager;
 import com.rookiedev.aeroplanechess.app.billing.BillingProvider;
@@ -89,6 +90,8 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
             isFirstRun = false;
             savePref();
         }
+
+        MobileAds.initialize(this, "ca-app-pub-6523245757541965~8170734995");
     }
 
     @Override

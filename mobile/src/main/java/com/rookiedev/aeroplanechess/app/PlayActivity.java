@@ -58,7 +58,7 @@ public class PlayActivity extends AppCompatActivity {
                 .build();
         // Create the interstitial.
         interstitial = new InterstitialAd(this);
-        interstitial.setAdUnitId("ca-app-pub-9759692679007522/2556917309");
+        interstitial.setAdUnitId("ca-app-pub-6523245757541965/8194909431");
         interstitial.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
