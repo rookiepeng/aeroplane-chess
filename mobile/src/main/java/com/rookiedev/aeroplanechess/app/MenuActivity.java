@@ -1,11 +1,12 @@
 package com.rookiedev.aeroplanechess.app;
 
 import android.app.AlertDialog;
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,14 +14,13 @@ import android.widget.ImageButton;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.Purchase;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.rookiedev.aeroplanechess.app.billing.BillingConstants;
 import com.rookiedev.aeroplanechess.app.billing.BillingManager;
 import com.rookiedev.aeroplanechess.app.billing.BillingProvider;
 import com.rookiedev.aeroplanechess.app.constants.Constants;
-import com.rookiedev.aeroplanechess.app.view.HomeView;
+import com.rookiedev.aeroplanechess.app.view.CardFragment;
 
 import java.util.List;
 
@@ -45,6 +45,10 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
     private BillingManager mBillingManager;
     private final UpdateListener mUpdateListener = new UpdateListener();
 
+    private FragmentManager fragmentManager;
+    private CardFragment fragmentCard1 = null;
+    private CardFragment fragmentCard2 = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +56,17 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //setContentView(R.layout.content_menu);
+        //setContentView(R.layout.content_menu_backup);
         readPref();
+
+        fragmentCard1 =new CardFragment();
+        fragmentCard2 =new CardFragment();
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction;
+        transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.frame1, fragmentCard1);
+        transaction.replace(R.id.frame2, fragmentCard2);
+        transaction.commit();
 
         /*
         adView =  this.findViewById(R.id.adView);
