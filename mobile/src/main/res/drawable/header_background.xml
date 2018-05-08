@@ -12,25 +12,25 @@
         android:translateY="305.1573">
         <path
             android:pathData="M-189.6393 -657.6366l540.47199 0 0 540.47199 -540.47199 0z"
-            android:fillColor="#f44336"
+            android:fillColor="#FF8F00"
             android:strokeLineJoin="miter"
             android:strokeLineCap="round"
             android:strokeMiterLimit="4" />
         <path
             android:pathData="M350.8327 -657.6366l540.47199 0 0 540.47199 -540.47199 0z"
-            android:fillColor="#ffc107"
+            android:fillColor="#1565C0"
             android:strokeLineJoin="miter"
             android:strokeLineCap="round"
             android:strokeMiterLimit="4" />
         <path
             android:pathData="M350.8327 -117.16461l540.47199 0 0 540.47198 -540.47199 0z"
-            android:fillColor="#2196f3"
+            android:fillColor="#2E7D32"
             android:strokeLineJoin="miter"
             android:strokeLineCap="round"
             android:strokeMiterLimit="4" />
         <path
             android:pathData="M-189.6393 -117.16461l540.47199 0 0 540.47198 -540.47199 0z"
-            android:fillColor="#4caf50"
+            android:fillColor="#c62828"
             android:strokeLineJoin="miter"
             android:strokeLineCap="round"
             android:strokeMiterLimit="4" />
