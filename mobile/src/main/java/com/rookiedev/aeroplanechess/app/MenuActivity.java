@@ -113,6 +113,7 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
                 super.onBackPressed();
             }
         }*/
+        super.onBackPressed();
     }
 
     @Override
