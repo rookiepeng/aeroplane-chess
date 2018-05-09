@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
     // Does the user have the premium upgrade?
     private boolean mIsPremium = false;
 
-    private int page=0;
+    private int page = 0;
 
     // if there was a game cached already
     private boolean isCached = false;
@@ -94,21 +94,21 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
     @Override
     public void onBackPressed() {
         FragmentTransaction transaction;
-        if (page==1) {
+        if (page == 1) {
             transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter_reverse, R.anim.exit_reverse);
             transaction.replace(R.id.frame1, cardResume);
             transaction.replace(R.id.frame2, cardNewGame);
             transaction.commit();
             page = 0;
-        }else if(page==2){
+        } else if (page == 2) {
             transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter_reverse, R.anim.exit_reverse);
             transaction.replace(R.id.frame1, cardTwoPlayers);
             transaction.replace(R.id.frame2, cardFourPlayers);
             transaction.commit();
-            page=1;
-        }else {
+            page = 1;
+        } else {
             super.onBackPressed();
         }
     }
@@ -243,10 +243,10 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
             transaction.replace(R.id.frame1, cardTwoPlayers);
             transaction.replace(R.id.frame2, cardFourPlayers);
             transaction.commit();
-            page=1;
+            page = 1;
             break;
         case CardFragment.RESUME_GAME:
-            page=0;
+            page = 0;
             break;
         case CardFragment.TWO_PLAYERS:
             transaction = fragmentManager.beginTransaction();
@@ -254,10 +254,10 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
             transaction.replace(R.id.frame1, cardRedVBlue);
             transaction.replace(R.id.frame2, cardYellowVGreen);
             transaction.commit();
-            page=2;
+            page = 2;
             break;
         case CardFragment.FOUR_PLAYERS:
-            page=1;
+            page = 1;
             break;
         }
     }

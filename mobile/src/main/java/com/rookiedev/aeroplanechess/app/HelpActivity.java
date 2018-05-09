@@ -18,7 +18,7 @@ public class HelpActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the content_menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.content_menu.help, content_menu);
+        // getMenuInflater().inflate(R.content_menu.help, content_menu);
         return true;
     }
 
