@@ -43,22 +43,22 @@ public class BoardView extends View {
         mContext = context;
         // Load attributes
         mPaintRed = new Paint();
-        mPaintRed.setColor(mContext.getResources().getColor(R.color.redLightHolo));
+        mPaintRed.setColor(mContext.getResources().getColor(R.color.redDark));
         mPaintRed.setStyle(Paint.Style.FILL);
         mPaintRed.setStrokeWidth(0);
         mPaintRed.setAntiAlias(true);
         mPaintYellow = new Paint();
-        mPaintYellow.setColor(mContext.getResources().getColor(R.color.orangeLightHolo));
+        mPaintYellow.setColor(mContext.getResources().getColor(R.color.amberDark));
         mPaintYellow.setStyle(Paint.Style.FILL);
         mPaintYellow.setStrokeWidth(0);
         mPaintYellow.setAntiAlias(true);
         mPaintGreen = new Paint();
-        mPaintGreen.setColor(mContext.getResources().getColor(R.color.greenLightHolo));
+        mPaintGreen.setColor(mContext.getResources().getColor(R.color.greenDark));
         mPaintGreen.setStyle(Paint.Style.FILL);
         mPaintGreen.setStrokeWidth(0);
         mPaintGreen.setAntiAlias(true);
         mPaintBlue = new Paint();
-        mPaintBlue.setColor(mContext.getResources().getColor(R.color.blueLightHolo));
+        mPaintBlue.setColor(mContext.getResources().getColor(R.color.blueDark));
         mPaintBlue.setStyle(Paint.Style.FILL);
         mPaintBlue.setStrokeWidth(0);
         mPaintBlue.setAntiAlias(true);
@@ -94,13 +94,9 @@ public class BoardView extends View {
         int radius = minWidth * 3 / 8;
 
         canvas.drawRect(gap + offset, gap + blank, fourWidth - gap + offset, fourWidth - gap + blank, mPaintRed);
-        //canvas.drawRect(0, blank, fourWidth, fourWidth + blank, mPaintPos);
         canvas.drawRect(minWidth * 13 + gap + offset, gap + blank, width - gap + offset, fourWidth - gap + blank, mPaintYellow);
-        //canvas.drawRect(minWidth * 13, blank, width, fourWidth + blank, mPaintPos);
         canvas.drawRect(gap + offset, minWidth * 13 + gap + blank, fourWidth - gap + offset, width - gap + blank, mPaintGreen);
-        //canvas.drawRect(0, minWidth * 13 + blank, fourWidth, height - blank, mPaintPos);
         canvas.drawRect(minWidth * 13 + gap + offset, minWidth * 13 + gap + blank, width - gap + offset, width - gap + blank, mPaintBlue);
-        //canvas.drawRect(minWidth * 13, minWidth * 13 + blank, width, height - blank, mPaintPos);
 
         path.moveTo(offset, minWidth * 6 + blank);
         path.lineTo(minWidth * 2 + offset, minWidth * 4 + blank);

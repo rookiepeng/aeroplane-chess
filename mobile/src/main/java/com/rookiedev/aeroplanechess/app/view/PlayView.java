@@ -680,7 +680,7 @@ public class PlayView extends ViewGroup {
 
     private void displayInterstitial() {
         if (interstitial.isLoaded()) {
-            interstitial.show();
+            //interstitial.show();
         }
     }
 

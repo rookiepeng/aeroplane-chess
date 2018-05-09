@@ -1,6 +1,7 @@
 package com.rookiedev.aeroplanechess.app;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -248,6 +249,7 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
     @Override
     public void onCardClicked(int cardType) {
         FragmentTransaction transaction;
+        Intent intent = new Intent();
         switch (cardType) {
         case CardFragment.NEW_GAME:
             transaction = fragmentManager.beginTransaction();
@@ -258,6 +260,10 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
             page = 1;
             break;
         case CardFragment.RESUME_GAME:
+            intent.setClass(mContext, PlayActivity.class);
+            intent.putExtra(Constants.ISCACHED_PREF, "true");
+            intent.putExtra(Constants.PLAYTYPE_PREF, String.valueOf(Constants.FOURPLAYER));
+            mContext.startActivity(intent);
             page = 0;
             break;
         case CardFragment.TWO_PLAYERS:
@@ -269,7 +275,23 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
             page = 2;
             break;
         case CardFragment.FOUR_PLAYERS:
+            intent.setClass(mContext, PlayActivity.class);
+            intent.putExtra(Constants.ISCACHED_PREF, "false");
+            intent.putExtra(Constants.PLAYTYPE_PREF, String.valueOf(Constants.FOURPLAYER));
+            mContext.startActivity(intent);
             page = 1;
+            break;
+        case CardFragment.RED_VS_BLUE:
+            intent.setClass(mContext, PlayActivity.class);
+            intent.putExtra(Constants.ISCACHED_PREF, "false");
+            intent.putExtra(Constants.PLAYTYPE_PREF, String.valueOf(Constants.REDvsBLUE));
+            mContext.startActivity(intent);
+            break;
+        case CardFragment.YELLOW_VS_GREEN:
+            intent.setClass(mContext, PlayActivity.class);
+            intent.putExtra(Constants.ISCACHED_PREF, "false");
+            intent.putExtra(Constants.PLAYTYPE_PREF, String.valueOf(Constants.YELLOWvsGREEN));
+            mContext.startActivity(intent);
             break;
         }
     }

@@ -59,7 +59,7 @@ public class PlayActivity extends AppCompatActivity {
         interstitial.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
-                displayInterstitial();
+                //displayInterstitial();
             }
         });
 
