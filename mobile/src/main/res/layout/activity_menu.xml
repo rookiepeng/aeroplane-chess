@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll"
+            app:layout_scrollFlags="snap"
             app:expandedTitleTextAppearance="@android:style/TextAppearance.Material.Headline"
             app:toolbarId="@+id/toolbar">
 

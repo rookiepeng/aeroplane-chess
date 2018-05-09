@@ -10,10 +10,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageButton;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.Purchase;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.rookiedev.aeroplanechess.app.billing.BillingConstants;
@@ -26,7 +26,7 @@ import java.util.List;
 
 import static com.rookiedev.aeroplanechess.app.billing.BillingManager.BILLING_MANAGER_NOT_INITIALIZED;
 
-public class MenuActivity extends AppCompatActivity implements BillingProvider {
+public class MenuActivity extends AppCompatActivity implements BillingProvider, CardFragment.OnCardClickListener {
     // if user start a new game
     public static boolean isPlayed = false;
     // is the first to play the game
@@ -37,8 +37,7 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
     // if there was a game cached already
     private boolean isCached = false;
     // views
-    //private HomeView homeView;
-    private ImageButton proButton;
+    // private HomeView homeView;
     private AdView adView;
     private Context mContext = this;
 
@@ -46,86 +45,55 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
     private final UpdateListener mUpdateListener = new UpdateListener();
 
     private FragmentManager fragmentManager;
-    private CardFragment fragmentCard1 = null;
-    private CardFragment fragmentCard2 = null;
+    private CardFragment cardNewGame, cardResume, cardTwoPlayers, cardFourPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //setContentView(R.layout.content_menu_backup);
+        MobileAds.initialize(this, "ca-app-pub-6523245757541965~8170734995");
+
         readPref();
 
-        fragmentCard1 =new CardFragment();
-        fragmentCard2 =new CardFragment();
+        cardNewGame = CardFragment.newInstance(CardFragment.NEW_GAME);
+        cardResume = CardFragment.newInstance(CardFragment.RESUME_GAME);
+        cardTwoPlayers = CardFragment.newInstance(CardFragment.TWO_PLAYERS);
+        cardFourPlayers = CardFragment.newInstance(CardFragment.FOUR_PLAYERS);
+
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction;
         transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frame1, fragmentCard1);
-        transaction.replace(R.id.frame2, fragmentCard2);
+        transaction.replace(R.id.frame1, cardResume);
+        transaction.replace(R.id.frame2, cardNewGame);
         transaction.commit();
 
-        /*
-        adView =  this.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR) // All emulators
+        adView = this.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR) // All emulators
                 .build();
         if (!mIsPremium) {
             adView.loadAd(adRequest);
-        }*/
-
-        /*
-        proButton =  findViewById(R.id.proButton);
-        if (mIsPremium) {
-            proButton.setVisibility(View.INVISIBLE);
         }
-
-        ImageButton helpButton =  findViewById(R.id.helpButton);
-        helpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(mContext, HelpActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        proButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBuyClicked();
-            }
-        });*/
 
         // Create and initialize BillingManager which talks to BillingLibrary
         mBillingManager = new BillingManager(this, mUpdateListener);
-
-        //homeView = findViewById(R.id.homeview);
 
         if (isFirstRun) {
             alertDialog();
             isFirstRun = false;
             savePref();
         }
-
-        MobileAds.initialize(this, "ca-app-pub-6523245757541965~8170734995");
     }
 
     @Override
     public void onBackPressed() {
         /*
-        if (!homeView.isAniOnGoing()) {
-            if (homeView.getPage() == 2) {
-                homeView.backToPage(1);
-            } else if (homeView.getPage() == 1) {
-                homeView.backToPage(0);
-            } else {
-                super.onBackPressed();
-            }
-        }*/
+         * if (!homeView.isAniOnGoing()) { if (homeView.getPage() == 2) {
+         * homeView.backToPage(1); } else if (homeView.getPage() == 1) {
+         * homeView.backToPage(0); } else { super.onBackPressed(); } }
+         */
         super.onBackPressed();
     }
 
@@ -133,10 +101,10 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
     protected void onResume() {
         super.onResume();
         if (isPlayed) {
-            //homeView.resetView();
+            // homeView.resetView();
         }
         readPref();
-        //homeView.setResume(isCached);
+        // homeView.setResume(isCached);
         // Note: We query purchases in onResume() to handle purchases completed while
         // the activity
         // is inactive. For example, this can happen if the activity is destroyed during
@@ -165,23 +133,19 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
         AlertDialog alert = new AlertDialog.Builder(this).create();
         alert.setTitle(getString(R.string.Upgrade_title));
         alert.setMessage(getString(R.string.Upgrade_context));
-        alert.setButton(AlertDialog.BUTTON_POSITIVE,
-                getString(R.string.Upgrade),
+        alert.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.Upgrade),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         onBuyClicked();
                     }
-                }
-        );
-        alert.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.Cancel),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                });
+        alert.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.Cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-                    }
-                }
-        );
+            }
+        });
         alert.setCanceledOnTouchOutside(false);
         alert.show();
     }
@@ -190,7 +154,7 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
      * User clicked the "pro" button.
      */
     private void onBuyClicked() {
-         if (mBillingManager != null
+        if (mBillingManager != null
                 && mBillingManager.getBillingClientResponseCode() > BILLING_MANAGER_NOT_INITIALIZED) {
             mBillingManager.initiatePurchaseFlow(BillingConstants.SKU_ADFREE, BillingClient.SkuType.INAPP);
         }
@@ -201,21 +165,24 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
         bld.setTitle(title);
         bld.setMessage(message);
         bld.setNeutralButton(getString(R.string.OK), null);
-        //Log.d("TAG", "Showing alert dialog: " + message);
+        // Log.d("TAG", "Showing alert dialog: " + message);
         bld.create().show();
     }
 
     private void readPref() {
-        SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME,
-                AppCompatActivity.MODE_PRIVATE);// get the parameters from the Shared
+        SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME, AppCompatActivity.MODE_PRIVATE);// get
+                                                                                                                    // the
+                                                                                                                    // parameters
+                                                                                                                    // from
+                                                                                                                    // the
+                                                                                                                    // Shared
         isFirstRun = prefs.getString(Constants.ISFIRSTRUN_PREF, "true").equals("true");
         isCached = prefs.getString(Constants.ISCACHED_PREF, "false").equals("true");
         mIsPremium = prefs.getString(Constants.PREMIUM, "false").equals("true");
     }
 
     private void savePref() {
-        SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME,
-                AppCompatActivity.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME, AppCompatActivity.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         if (mIsPremium) {
             editor.putString(Constants.PREMIUM, "true");
@@ -255,6 +222,26 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
         return false;
     }
 
+    @Override
+    public void onCardClicked(int cardType) {
+        FragmentTransaction transaction;
+        transaction = fragmentManager.beginTransaction();
+        switch (cardType) {
+        case CardFragment.NEW_GAME:
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit);
+            transaction.replace(R.id.frame1, cardTwoPlayers);
+            transaction.replace(R.id.frame2, cardFourPlayers);
+            transaction.commit();
+            break;
+        case CardFragment.RESUME_GAME:
+            break;
+        case CardFragment.TWO_PLAYERS:
+            break;
+        case CardFragment.FOUR_PLAYERS:
+            break;
+        }
+    }
+
     /**
      * Handler to billing updates
      */
@@ -272,12 +259,12 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider {
         @Override
         public void onPurchasesUpdated(List<Purchase> purchases) {
             if (purchases.isEmpty()) {
-                mIsPremium=false;
+                mIsPremium = false;
             }
             for (com.android.billingclient.api.Purchase purchase : purchases) {
                 if (purchase.getSku().equals(BillingConstants.SKU_ADFREE)) {
                     alert(getString(R.string.pro_title), getString(R.string.pro_version));
-                    proButton.setVisibility(View.INVISIBLE); // hide buy button
+                    // proButton.setVisibility(View.INVISIBLE); // hide buy button
                     adView.setVisibility(View.INVISIBLE); // hide AD
                     mIsPremium = true;
                     savePref();

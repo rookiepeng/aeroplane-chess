@@ -27,3 +27,7 @@ proguard/
 
 # 
 .idea/
+.project
+.settings/org.eclipse.buildship.core.prefs
+mobile/.classpath
+mobile/.settings/org.eclipse.buildship.core.prefs

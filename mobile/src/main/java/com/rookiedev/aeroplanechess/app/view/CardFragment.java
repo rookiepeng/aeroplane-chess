@@ -1,34 +1,37 @@
 package com.rookiedev.aeroplanechess.app.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.rookiedev.aeroplanechess.app.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CardFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
  * Use the {@link CardFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class CardFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public static final String CARD_TYPE = "CARD_TYPE";
+    public static final int NEW_GAME=0, RESUME_GAME=1, TWO_PLAYERS=2, FOUR_PLAYERS=3, RED_VS_BLUE=4, YELLOW_VS_GREEN=5;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+    private View viewRoot;
+    private Activity activity;
+    private int type;
+    private CardView cardView;
+    private ImageView imageView;
+    private TextView textView;
 
     public CardFragment() {
         // Required empty public constructor
@@ -38,55 +41,87 @@ public class CardFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param cardType card type.
      * @return A new instance of fragment CardFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static CardFragment newInstance(String param1, String param2) {
+    public static CardFragment newInstance(int cardType) {
         CardFragment fragment = new CardFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(CARD_TYPE,cardType);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public interface OnCardClickListener {
+        public void onCardClicked(int cardType);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            type=getArguments().getInt(CARD_TYPE);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card, container, false);
-    }
+        viewRoot=inflater.inflate(R.layout.fragment_card, container, false);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+        cardView=viewRoot.findViewById(R.id.cardView_menu);
+        imageView=viewRoot.findViewById(R.id.imageView_menu);
+        textView=viewRoot.findViewById(R.id.textView_menu);
+
+        switch (type){
+            case NEW_GAME:
+                imageView.setImageResource(R.drawable.ic_play);
+                imageView.setBackgroundColor(getResources().getColor(R.color.green));
+                cardView.setForeground(getResources().getDrawable(R.drawable.ripple_green));
+                textView.setText(R.string.new_game);
+                break;
+            case RESUME_GAME:
+                imageView.setImageResource(R.drawable.ic_resume);
+                imageView.setBackgroundColor(getResources().getColor(R.color.amber));
+                cardView.setForeground(getResources().getDrawable(R.drawable.ripple_amber));
+                textView.setText(R.string.resume_game);
+                break;
+            case TWO_PLAYERS:
+                imageView.setImageResource(R.drawable.ic_two);
+                imageView.setBackground(getResources().getDrawable(R.drawable.background_two));
+                cardView.setForeground(getResources().getDrawable(R.drawable.ripple_red));
+                textView.setText(R.string.two_players);
+                break;
+            case FOUR_PLAYERS:
+                imageView.setImageResource(R.drawable.ic_four);
+                imageView.setBackground(getResources().getDrawable(R.drawable.background_four));
+                cardView.setForeground(getResources().getDrawable(R.drawable.ripple_blue));
+                textView.setText(R.string.four_players);
+                break;
         }
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    ((OnCardClickListener) activity).onCardClicked(type);
+                }catch (ClassCastException cce){
+                    Crashlytics.log(Log.ERROR, "CardFragment", String.valueOf(cce));
+                }
+            }
+
+        });
+
+        return viewRoot;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity){
+            activity=(Activity) context;
+        }
     }
 }

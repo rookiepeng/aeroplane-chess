@@ -4,6 +4,9 @@
     <string name="app_name">Aeroplane Chess</string>
 
     <string name="new_game">New Game</string>
+    <string name="resume_game">Resume Game</string>
+    <string name="two_players">Two Players</string>
+    <string name="four_players">Four Players</string>
 
     <string name="Upgrade_title">Upgrade?</string>
     <string name="Upgrade_context">Upgrade to pro version to remove Ads?</string>
@@ -15,9 +18,8 @@
 
     <string name="leaderboard">Leaderboard</string>
 
-    <string name="resume_game">Resume Game</string>
-    <string name="two_players">Two Players</string>
-    <string name="four_players">Four Players</string>
+
+
     <string name="red_vs_blue">Red vs Blue</string>
     <string name="yellow_vs_green">Yellow vs Green</string>
 

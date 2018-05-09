@@ -3,38 +3,43 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView_menu"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/menu_height"
     android:fitsSystemWindows="false"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="4dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:foreground="@drawable/ripple_green"
+    android:focusable="true"
+    android:clickable="true">
 
     <android.support.constraint.ConstraintLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="@dimen/menu_height"
-            android:layout_height="@dimen/menu_height"
-            android:background="@color/blue"
+            android:id="@+id/imageView_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@color/green"
             android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
             app:srcCompat="@drawable/ic_play"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/new_game"
             android:textAppearance="@android:style/TextAppearance.Material.Headline"
-            card_view:layout_constraintBottom_toBottomOf="@+id/imageView"
-            card_view:layout_constraintStart_toEndOf="@+id/imageView"
-            card_view:layout_constraintTop_toTopOf="@+id/imageView" />
+            card_view:layout_constraintBottom_toBottomOf="@+id/imageView_menu"
+            card_view:layout_constraintStart_toEndOf="@+id/imageView_menu"
+            card_view:layout_constraintTop_toTopOf="@+id/imageView_menu" />
 
     </android.support.constraint.ConstraintLayout>
 

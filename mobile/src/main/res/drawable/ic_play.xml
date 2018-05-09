@@ -1,5 +1,23 @@
-<vector android:height="24dp" android:tint="#FFFFFF"
-    android:viewportHeight="24.0" android:viewportWidth="24.0"
-    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#FF000000" android:pathData="M8,5v14l11,-7z"/>
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="35.27778"
+    android:viewportHeight="35.27778"
+    android:width="125dp"
+    android:height="125dp">
+    <group
+        android:translateY="-261.7222">
+        <path
+            android:pathData="M24.01376 279.36111l-9.565479 5.52264 0 -11.04527z"
+            android:fillColor="#FFFFFF"
+            android:strokeLineJoin="miter"
+            android:strokeLineCap="round"
+            android:strokeMiterLimit="4" />
+        <path
+            android:pathData="M26.757564 279.36111a9.1186762 9.1186762 0 0 1 -9.118677 9.11868 9.1186762 9.1186762 0 0 1 -9.1186758 -9.11868 9.1186762 9.1186762 0 0 1 9.1186758 -9.11867 9.1186762 9.1186762 0 0 1 9.118677 9.11867z"
+            android:strokeWidth="1.411111"
+            android:strokeLineJoin="miter"
+            android:strokeLineCap="round"
+            android:strokeMiterLimit="4"
+            android:strokeColor="#FFFFFF" />
+    </group>
 </vector>
