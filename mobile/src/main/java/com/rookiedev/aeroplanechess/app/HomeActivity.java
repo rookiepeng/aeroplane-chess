@@ -26,7 +26,7 @@ import java.util.List;
 
 import static com.rookiedev.aeroplanechess.app.billing.BillingManager.BILLING_MANAGER_NOT_INITIALIZED;
 
-public class MenuActivity extends AppCompatActivity implements BillingProvider, CardFragment.OnCardClickListener {
+public class HomeActivity extends AppCompatActivity implements BillingProvider, CardFragment.OnCardClickListener {
     // if user start a new game
     public static boolean isPlayed = false;
     // is the first to play the game
@@ -34,9 +34,11 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider, 
     // Does the user have the premium upgrade?
     private boolean mIsPremium = false;
 
+    private int page=0;
+
     // if there was a game cached already
     private boolean isCached = false;
-    // views
+
     // private HomeView homeView;
     private AdView adView;
     private Context mContext = this;
@@ -50,7 +52,7 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -89,12 +91,17 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider, 
 
     @Override
     public void onBackPressed() {
-        /*
-         * if (!homeView.isAniOnGoing()) { if (homeView.getPage() == 2) {
-         * homeView.backToPage(1); } else if (homeView.getPage() == 1) {
-         * homeView.backToPage(0); } else { super.onBackPressed(); } }
-         */
-        super.onBackPressed();
+        if (page==1){
+            FragmentTransaction transaction;
+            transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter_reverse, R.anim.exit_reverse);
+            transaction.replace(R.id.frame1, cardResume);
+            transaction.replace(R.id.frame2, cardNewGame);
+            transaction.commit();
+            page=0;
+        }else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -170,12 +177,7 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider, 
     }
 
     private void readPref() {
-        SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME, AppCompatActivity.MODE_PRIVATE);// get
-                                                                                                                    // the
-                                                                                                                    // parameters
-                                                                                                                    // from
-                                                                                                                    // the
-                                                                                                                    // Shared
+        SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME, AppCompatActivity.MODE_PRIVATE);
         isFirstRun = prefs.getString(Constants.ISFIRSTRUN_PREF, "true").equals("true");
         isCached = prefs.getString(Constants.ISCACHED_PREF, "false").equals("true");
         mIsPremium = prefs.getString(Constants.PREMIUM, "false").equals("true");
@@ -224,18 +226,20 @@ public class MenuActivity extends AppCompatActivity implements BillingProvider, 
 
     @Override
     public void onCardClicked(int cardType) {
-        FragmentTransaction transaction;
-        transaction = fragmentManager.beginTransaction();
         switch (cardType) {
         case CardFragment.NEW_GAME:
+            FragmentTransaction transaction;
+            transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit);
             transaction.replace(R.id.frame1, cardTwoPlayers);
             transaction.replace(R.id.frame2, cardFourPlayers);
             transaction.commit();
+            page=1;
             break;
         case CardFragment.RESUME_GAME:
             break;
         case CardFragment.TWO_PLAYERS:
+            page=2;
             break;
         case CardFragment.FOUR_PLAYERS:
             break;

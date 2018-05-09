@@ -8,11 +8,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rookiedev.aeroplanechess.app.MenuActivity;
+import com.rookiedev.aeroplanechess.app.HomeActivity;
 import com.rookiedev.aeroplanechess.app.PlayActivity;
 import com.rookiedev.aeroplanechess.app.R;
 import com.rookiedev.aeroplanechess.app.constants.Constants;
@@ -296,7 +295,7 @@ public class HomeView extends ViewGroup {
         fourPlayers.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                MenuActivity.isPlayed = true;
+                HomeActivity.isPlayed = true;
                 Intent intent = new Intent();
                 intent.setClass(mContext, PlayActivity.class);
                 intent.putExtra(Constants.ISCACHED_PREF, "false");
@@ -308,7 +307,7 @@ public class HomeView extends ViewGroup {
         redVSblue.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                MenuActivity.isPlayed = true;
+                HomeActivity.isPlayed = true;
                 Intent intent = new Intent();
                 intent.setClass(mContext, PlayActivity.class);
                 intent.putExtra(Constants.ISCACHED_PREF, "false");
@@ -320,7 +319,7 @@ public class HomeView extends ViewGroup {
         yellowVSgreen.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                MenuActivity.isPlayed = true;
+                HomeActivity.isPlayed = true;
                 Intent intent = new Intent();
                 intent.setClass(mContext, PlayActivity.class);
                 intent.putExtra(Constants.ISCACHED_PREF, "false");

@@ -2894,8 +2894,8 @@ public class PlayView extends ViewGroup {
         SharedPreferences prefs = mContext.getSharedPreferences(Constants.SHARED_PREFS_NAME,
                 AppCompatActivity.MODE_PRIVATE);// get the parameters from the Shared
         // read values from the shared preferences
-        //player = Integer.parseInt(prefs.getString(MenuActivity.PLAYTYPE_PREF, String.valueOf(PlayView.FOURPLAYER)));
-        //turn = Integer.parseInt(prefs.getString(MenuActivity.TURN_PREF, String.valueOf(PlayView.RED)));
+        //player = Integer.parseInt(prefs.getString(HomeActivity.PLAYTYPE_PREF, String.valueOf(PlayView.FOURPLAYER)));
+        //turn = Integer.parseInt(prefs.getString(HomeActivity.TURN_PREF, String.valueOf(PlayView.RED)));
         //setParameter(player, turn);
         // read values from the shared preferences
         playType = Integer.parseInt(prefs.getString(Constants.PLAYTYPE_PREF, String.valueOf(Constants.FOURPLAYER)));
@@ -2937,10 +2937,10 @@ public class PlayView extends ViewGroup {
         }
         dice.setClickable(prefs.getString(Constants.DICE_C_PREF, "false").equals("true"));
         dice.setNumber(Integer.parseInt(prefs.getString(Constants.DICE_NUMBER_PREF, "0")));
-        //dice.setClickable(prefs.getString(MenuActivity.DICE_C_PREF, "false").equals("true"));
+        //dice.setClickable(prefs.getString(HomeActivity.DICE_C_PREF, "false").equals("true"));
         dice.setTranslationX(Float.parseFloat(prefs.getString(Constants.DICE_X_PREF, "0")));
         dice.setTranslationY(Float.parseFloat(prefs.getString(Constants.DICE_Y_PREF, "0")));
-        //dice.setNumber(Integer.parseInt(prefs.getString(MenuActivity.DICE_NUMBER_PREF, "0")));
+        //dice.setNumber(Integer.parseInt(prefs.getString(HomeActivity.DICE_NUMBER_PREF, "0")));
     }
 
     public void setResume() {
