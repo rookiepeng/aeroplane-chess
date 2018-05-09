@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
     private final UpdateListener mUpdateListener = new UpdateListener();
 
     private FragmentManager fragmentManager;
-    private CardFragment cardNewGame, cardResume, cardTwoPlayers, cardFourPlayers;
+    private CardFragment cardNewGame, cardResume, cardTwoPlayers, cardFourPlayers, cardRedVBlue, cardYellowVGreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,8 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
         cardResume = CardFragment.newInstance(CardFragment.RESUME_GAME);
         cardTwoPlayers = CardFragment.newInstance(CardFragment.TWO_PLAYERS);
         cardFourPlayers = CardFragment.newInstance(CardFragment.FOUR_PLAYERS);
+        cardRedVBlue = CardFragment.newInstance(CardFragment.RED_VS_BLUE);
+        cardYellowVGreen = CardFragment.newInstance(CardFragment.YELLOW_VS_GREEN);
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction;
@@ -91,14 +93,21 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
 
     @Override
     public void onBackPressed() {
-        if (page==1){
-            FragmentTransaction transaction;
+        FragmentTransaction transaction;
+        if (page==1) {
             transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter_reverse, R.anim.exit_reverse);
             transaction.replace(R.id.frame1, cardResume);
             transaction.replace(R.id.frame2, cardNewGame);
             transaction.commit();
-            page=0;
+            page = 0;
+        }else if(page==2){
+            transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter_reverse, R.anim.exit_reverse);
+            transaction.replace(R.id.frame1, cardTwoPlayers);
+            transaction.replace(R.id.frame2, cardFourPlayers);
+            transaction.commit();
+            page=1;
         }else {
             super.onBackPressed();
         }
@@ -226,9 +235,9 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
 
     @Override
     public void onCardClicked(int cardType) {
+        FragmentTransaction transaction;
         switch (cardType) {
         case CardFragment.NEW_GAME:
-            FragmentTransaction transaction;
             transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter, R.anim.exit);
             transaction.replace(R.id.frame1, cardTwoPlayers);
@@ -237,11 +246,18 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
             page=1;
             break;
         case CardFragment.RESUME_GAME:
+            page=0;
             break;
         case CardFragment.TWO_PLAYERS:
+            transaction = fragmentManager.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter, R.anim.exit);
+            transaction.replace(R.id.frame1, cardRedVBlue);
+            transaction.replace(R.id.frame2, cardYellowVGreen);
+            transaction.commit();
             page=2;
             break;
         case CardFragment.FOUR_PLAYERS:
+            page=1;
             break;
         }
     }
