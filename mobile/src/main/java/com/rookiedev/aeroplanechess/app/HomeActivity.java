@@ -70,8 +70,12 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction;
         transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frame1, cardResume);
-        transaction.replace(R.id.frame2, cardNewGame);
+        if (isCached) {
+            transaction.replace(R.id.frame1, cardResume);
+            transaction.replace(R.id.frame2, cardNewGame);
+        } else {
+            transaction.replace(R.id.frame1, cardNewGame);
+        }
         transaction.commit();
 
         adView = this.findViewById(R.id.adView);
@@ -95,11 +99,19 @@ public class HomeActivity extends AppCompatActivity implements BillingProvider, 
     public void onBackPressed() {
         FragmentTransaction transaction;
         if (page == 1) {
-            transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter_reverse, R.anim.exit_reverse);
-            transaction.replace(R.id.frame1, cardResume);
-            transaction.replace(R.id.frame2, cardNewGame);
-            transaction.commit();
+            if (isCached) {
+                transaction = fragmentManager.beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_reverse, R.anim.exit_reverse);
+                transaction.replace(R.id.frame1, cardResume);
+                transaction.replace(R.id.frame2, cardNewGame);
+                transaction.commit();
+            } else {
+                transaction = fragmentManager.beginTransaction();
+                transaction.setCustomAnimations(R.anim.enter_reverse, R.anim.exit_reverse);
+                transaction.replace(R.id.frame1, cardNewGame);
+                transaction.remove(cardFourPlayers);
+                transaction.commit();
+            }
             page = 0;
         } else if (page == 2) {
             transaction = fragmentManager.beginTransaction();
