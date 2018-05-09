@@ -99,6 +99,18 @@ public class CardFragment extends Fragment {
                 cardView.setForeground(getResources().getDrawable(R.drawable.ripple_blue));
                 textView.setText(R.string.four_players);
                 break;
+            case RED_VS_BLUE:
+                imageView.setImageResource(R.drawable.background_two);
+                imageView.setBackground(getResources().getDrawable(R.drawable.background_two));
+                cardView.setForeground(getResources().getDrawable(R.drawable.ripple_red));
+                textView.setText(R.string.red_vs_blue);
+                break;
+            case YELLOW_VS_GREEN:
+                imageView.setImageResource(R.drawable.background_green_yellow);
+                imageView.setBackground(getResources().getDrawable(R.drawable.background_green_yellow));
+                cardView.setForeground(getResources().getDrawable(R.drawable.ripple_amber));
+                textView.setText(R.string.yellow_vs_green);
+                break;
         }
 
         cardView.setOnClickListener(new View.OnClickListener() {
