@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,7 +16,7 @@
     android:focusable="true"
     android:clickable="true">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
@@ -43,6 +43,6 @@
             card_view:layout_constraintStart_toEndOf="@+id/imageView_menu"
             card_view:layout_constraintTop_toTopOf="@+id/imageView_menu" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</android.support.v7.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

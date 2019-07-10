@@ -8,14 +8,12 @@ import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.rookiedev.aeroplanechess.app.constants.Constants;
 
 /**
@@ -82,11 +80,6 @@ public class PlayView extends ViewGroup {
     private ObjectAnimator transXAnimator, transYAnimator, diceAnimator;
     private Animator.AnimatorListener listener;
     private int aniDuration = 350, diceDuration = 300;
-    /**
-     * interstitial ads
-     */
-    private InterstitialAd interstitial;
-    private AdRequest adRequest;
 
     private int playType, turn;
     private int focusPlane = 18;
@@ -667,21 +660,6 @@ public class PlayView extends ViewGroup {
         rankView = new RankView(mContext);
         addView(rankView);
         rankView.setVisibility(INVISIBLE);
-
-        // Create ad request.
-        adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
-                .addTestDevice("015d172c791c0215")
-                .addTestDevice("04afa117002e7ebc")
-                .build();
-        // Create the interstitial.
-        interstitial = new InterstitialAd(mContext);
-    }
-
-    private void displayInterstitial() {
-        if (interstitial.isLoaded()) {
-            //interstitial.show();
-        }
     }
 
     @Override
@@ -2957,17 +2935,7 @@ public class PlayView extends ViewGroup {
         rankAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-                interstitial.setAdUnitId("ca-app-pub-9759692679007522/9940583300");
-                interstitial.setAdListener(new AdListener() {
-                    @Override
-                    public void onAdLoaded() {
-                        displayInterstitial();
-                    }
-                });
-                checkPremium();
-                if (!isPremium) {
-                    interstitial.loadAd(adRequest);
-                }
+
             }
 
             @Override
@@ -2986,12 +2954,6 @@ public class PlayView extends ViewGroup {
             }
         });
         rankAnimator.start();
-    }
-
-    private void checkPremium() {
-        SharedPreferences prefs = mContext.getSharedPreferences(Constants.SHARED_PREFS_NAME,
-                AppCompatActivity.MODE_PRIVATE);// get the parameters from the Shared
-        isPremium = prefs.getString(Constants.PREMIUM, "false").equals("true");
     }
 
     private void threeSix() {

@@ -1,6 +1,5 @@
 package com.rookiedev.aeroplanechess.app;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import androidx.fragment.app.FragmentManager;
 import android.content.Context;
@@ -17,18 +16,12 @@ import com.rookiedev.aeroplanechess.app.view.CardFragment;
 public class HomeActivity extends AppCompatActivity implements CardFragment.OnCardClickListener {
     // if user start a new game
     public static boolean isPlayed = false;
-    // is the first to play the game
-    private boolean isFirstRun;
-    // Does the user have the premium upgrade?
-    private boolean mIsPremium = false;
 
     private int page = 0;
 
     // if there was a game cached already
     private boolean isCached = false;
-
     private Context mContext = this;
-
 
     private FragmentManager fragmentManager;
     private CardFragment cardNewGame, cardResume, cardTwoPlayers, cardFourPlayers, cardRedVBlue, cardYellowVGreen;
@@ -100,37 +93,11 @@ public class HomeActivity extends AppCompatActivity implements CardFragment.OnCa
         readPref();
     }
 
-    private void alert(String title, String message) {
-        AlertDialog.Builder bld = new AlertDialog.Builder(this);
-        bld.setTitle(title);
-        bld.setMessage(message);
-        bld.setNeutralButton(getString(R.string.OK), null);
-        // Log.d("TAG", "Showing alert dialog: " + message);
-        bld.create().show();
-    }
-
     private void readPref() {
         SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME, AppCompatActivity.MODE_PRIVATE);
-        isFirstRun = prefs.getString(Constants.ISFIRSTRUN_PREF, "true").equals("true");
         isCached = prefs.getString(Constants.ISCACHED_PREF, "false").equals("true");
-        mIsPremium = prefs.getString(Constants.PREMIUM, "false").equals("true");
     }
 
-    private void savePref() {
-        SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREFS_NAME, AppCompatActivity.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        if (mIsPremium) {
-            editor.putString(Constants.PREMIUM, "true");
-        } else {
-            editor.putString(Constants.PREMIUM, "false");
-        }
-        if (isFirstRun) {
-            editor.putString(Constants.ISFIRSTRUN_PREF, "true");
-        } else {
-            editor.putString(Constants.ISFIRSTRUN_PREF, "false");
-        }
-        editor.apply();
-    }
 
     @Override
     public void onCardClicked(int cardType) {
